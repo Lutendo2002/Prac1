@@ -1,11 +1,81 @@
 ---
-title: "Prac1"
+title: "Practical One"
+type: website
+format: html
+toc: true
+toc-depth: 3
+
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Question 1
 
 ```{r}
-1 + 1
+#| echo: true
+#| fig-cap: "Question 1"
+data <- airquality
+head(airquality)
+
+## Elements with true represent the missing elements in the dataset
+missing <- is.na(airquality)
+missing[1:10,]
+
 ```
+Question 2
+
+The Summary statistics for the temperature variable
+```{r echo= TRUE}
+
+## Mean of the temperature
+mean(airquality$Temp)
+
+## Standard deviation of the temperature
+sd(airquality$Temp)
+
+## The minimum temperature
+min(airquality$Temp)
+
+## The maxiumum temperature
+max(airquality$Temp)
+```
+
+
+```{r echo=TRUE}
+newData <- na.omit(airquality$Ozone)
+
+## Mean of the Ozone
+mean(newData)
+
+## Standard deviation of the temperature
+sd(newData)
+
+## The minimum temperature
+min(newData)
+
+## The maxiumum temperature
+max(newData)
+
+```
+
+Question 3
+
+```{r echo=FALSE}
+
+beta_hat <- c(cars$speed)
+intercept <- rep(1,50)
+
+x_mat <- cbind(intercept, beta_hat)
+y_mat <- c(cars$dist)
+
+calc <- solve(t(x_mat) %*% x_mat) %*% t(x_mat) %*% y_mat
+calc
+
+```
+
+
+Question 4
+
+```{r}
+regression <- lm(dist~speed, data = cars)
+summary(regression)
+```
+
